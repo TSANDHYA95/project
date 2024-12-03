@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sweet Delight - Sweet Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f3f3f3;
+    }
+
+    header {
+      background-color:#8d520c;
+      color: white;
+      text-align: center;
+      padding: 40px;
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 3.5em;
+      margin: 0;
+    }
+
+    header p {
+      font-size: 1.5em;
+      margin: 10px 0 0;
+      font-weight: 600;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #937755;
+    }
+
+    nav a {
+      color: white;
+      padding: 15px 25px;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #ff6f61;
+      color: #fff;
+    }
+
+    section {
+      display: none;
+      padding: 60px 20px;
+      margin: 20px;
+      border-radius: 15px;
+      background-color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: opacity 0.5s;
+    }
+
+    section.active {
+      display: block;
+      opacity: 1;
+    }
+
+    /* Home Section */
+    #home {
+      text-align: center;
+      background-image: url('https://www.shutterstock.com/image-vector/candy-shop-welcome-banner-inviting-260nw-1562829193.jpg');
+      background-size: cover;
+      background-position: center;
+      color:#6b4812;
+      padding: 150px 20px;
+    }
+
+    #home h2 {
+      font-size: 4em;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    #home p {
+      font-size: 1.5em;
+      font-weight: 400;
+      margin-top: 0;
+    }
+
+  /* Portfolio Section */
+#portfolio {
+  text-align: center;
+  background-color: #ffefdb;
+  padding: 60px 20px;
+}
+
+#portfolio h2 {
+  color: #937755;
+  font-size: 3em;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+#portfolio p {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+}
+
+/* Portfolio Item Styling */
+.portfolio-item {
+  display: inline-block;
+  margin: 50px;
+  width: 350px;
+  height: 350px; /* Set a fixed height for consistency */
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  overflow: hidden;
+  position: relative;
+  vertical-align: top; /* Ensures proper alignment of items */
+}
+
+/* Adjust image size to fit within portfolio-item */
+.portfolio-item img {
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  transition: transform 0.3s;
+  object-fit: cover; /* Ensures the image covers the area without distorting */
+}
+
+/* Description Styling */
+.portfolio-item .description {
+  padding: px;
+  background-color: #fff;
+  color: #333;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align:center;
+  transition: transform 0.3s;
+}
+
+/* Hover Effects */
+.portfolio-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.portfolio-item:hover img {
+  transform: scale(1.1); /* Slight zoom-in effect */
+}
+
+.portfolio-item:hover .description {
+  transform: translateY(0);
+}
+
+
+    /* Product Section */
+    #products {
+      background-color: #fff;
+      padding: 60px 20px;
+    }
+
+    #products h2 {
+      text-align: center;
+      color:#937755;
+      font-size: 3em;
+      margin-bottom: 30px;
+    }
+
+    .filters {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .filters select, .filters button {
+      font-size: 1.2em;
+      padding: 10px;
+      margin: 0 10px;
+      border-radius: 5px;
+    }
+
+    .product-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .product {
+      width: 250px;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s;
+      text-align: center;
+      padding: 15px;
+    }
+
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+
+    .product .price {
+      font-size: 1.5em;
+      color: #ff6f61;
+      margin-top: 15px;
+    }
+
+    .product .rating {
+      margin-top: 5px;
+      color: #f39c12;
+    }
+
+    .product:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    /* To-Do List Section */
+    #to-do {
+      background-color: #ffefdb;
+      padding: 60px 20px;
+    }
+
+    #to-do h2 {
+      text-align: center;
+      color:#8d520c;
+      font-size: 3em;
+      margin-bottom: 30px;
+    }
+
+    #to-do input {
+      font-size: 1.2em;
+      padding: 10px;
+      width: 60%;
+      margin-right: 10px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+
+    #to-do button {
+      font-size: 1.2em;
+      padding: 10px 20px;
+      background-color: #8f6330;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #to-do ul {
+      list-style-type: none;
+      padding: 0;
+      margin-top: 30px;
+    }
+
+    #to-do li {
+      font-size: 1.2em;
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #to-do li button {
+      background-color:#8d5a1d;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    /* Contact Section */
+    #contact {
+      background-color: #fff;
+      padding: 60px 20px;
+    }
+
+    #contact h2 {
+      text-align: center;
+      color:#8d520c;
+      font-size: 3em;
+      margin-bottom: 30px;
+    }
+
+    #contact form input, #contact form textarea {
+      padding: 15px;
+      margin: 10px 0;
+      width: 50%;
+      font-size: 1.2em;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+
+    #contact form button {
+      padding: 15px 25px;
+      font-size: 1.5em;
+      background-color: #8d5a1d;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    /* Scroll to top button */
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #ff6f61;
+      color: white;
+      padding: 15px;
+      border-radius: 50%;
+      font-size: 1.5em;
+      cursor: pointer;
+      display: none;
+    }
+
+    .scroll-top:hover {
+      background-color: #e74c3c;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Sweet Delight</h1>
+    <p>Your one-stop shop for delicious sweets</p>
+  </header>
+
+  <nav>
+    <a href="javascript:void(0)" onclick="showSection('home')">Home</a>
+    <a href="javascript:void(0)" onclick="showSection('portfolio')">Portfolio</a>
+    <a href="javascript:void(0)" onclick="showSection('products')">Products</a>
+    <a href="javascript:void(0)" onclick="showSection('to-do')">To-Do</a>
+    <a href="javascript:void(0)" onclick="showSection('contact')">Contact</a>
+  </nav>
+
+  <main>
+    <!-- Home Section -->
+    <section id="home" class="active">
+      <h2>Welcome to Sweet Delight!</h2>
+      <p>Explore our delicious sweets made with the finest ingredients. Taste the happiness in every bite!</p>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+      <h2>Our Portfolio</h2>
+      <p>Check out our best-selling sweets and their ingredients.</p>
+      <div class="portfolio-item">
+        <img src="https://i.ytimg.com/vi/bABPXd4utgA/maxresdefault.jpg" alt="Malaipuri Treat">
+        <div class="description">
+          <p><strong>Malai puri</strong></p>
+          <p>Delicious Sweet made with the finest ingredients, each bite is a burst of flavor!</p>
+        </div>
+      </div>
+      <div class="portfolio-item">
+        <img src="https://theovenchef.com/wp-content/uploads/2023/08/WhatsApp-Image-2023-11-01-at-5.39.28-PM-1-scaled-e1698841246352.jpeg" alt="Chocolate Delight">
+        <div class="description">
+          <p><strong>Chocolate Delight</strong></p>
+          <p>A perfect chocolatey treat for all the chocolate lovers out there. Pure bliss in every bite.</p>
+        </div>
+      </div>
+      <div class="portfolio-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLiOVB9je4ap4kGtwlmB7CJ3hRkxzk2O6ogg&s" alt="Candy Collection">
+        <div class="description">
+          <p><strong>Candy Collection</strong></p>
+          <p>A collection of sweet, tangy, and colorful candies that will brighten up your day!</p>
+        </div>
+	</div>
+	 <div class="portfolio-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0oDWpinvTVU0nuyWunyZgx5hwwOsiLauDFw&s" alt="Gulab Jamun">
+        <div class="description">
+          <p><strong>Gulab Jamun</strong></p>
+          <p>Golden orbs of joy,soaked in luscious syrup,delivering an explosion of sweetness with every bite!</p>
+        </div>
+	</div>
+	 <div class="portfolio-item">
+        <img src="https://t4.ftcdn.net/jpg/04/54/48/05/360_F_454480598_aMHhsazVoE4lPyYafssi8vxEmvQW9t9M.jpg" alt="Kaju Barfi">
+        <div class="description">
+          <p><strong>Kaju Barfi</strong></p>
+          <p> Velvety smooth and irresistibly rich, this cashew delight is a masterpiece of indulgence!</p>
+        </div>
+      </div>
+	 <div class="portfolio-item">
+        <img src="https://i.ytimg.com/vi/txx39GtE5Mw/maxresdefault.jpg" alt="Bread Halwa">
+        <div class="description">
+          <p><strong>Bread Halwa</strong></p>
+          <p>A heavenly blend of warm spices and caramelized bread, offering a taste of nostalgia in every spoonful!</p>
+        </div>
+      </div>
+	 <div class="portfolio-item">
+        <img src="https://rachnas-kitchen.com/wp-content/uploads/2015/09/chum-chum1.jpg" alt="Rasagulla">
+        <div class="description">
+          <p><strong>Rasagulla</strong></p>
+          <p>Light,airy,sweetness,these spongy wonders redefine dessert bliss!</p>
+        </div>
+      </div>
+	 <div class="portfolio-item">
+        <img src="https://www.aashirvaadsvasti.in/Images/recipesindividualpages/Badam-Halwa.jpg" alt="Badham Halwa">
+        <div class="description">
+          <p><strong>Badham Halwa</strong></p>
+          <p>A royal treat of almond richness and buttery aroma, crafted to melt hearts and taste buds alike!</p>
+        </div>
+      </div>
+	 <div class="portfolio-item">
+        <img src="https://static.toiimg.com/thumb/msid-112315676,width-1280,height-720,imgsize-66530,resizemode-6,overlay-toi_sw,pt-32,y_pad-40/photo.jpg" alt="Ice Cream">
+        <div class="description">
+          <p><strong>Ice Cream</strong></p>
+          <p>A creamy cascade of flavor, where every scoop is a symphony of pure, refreshing delight!</p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Product Section -->
+    <section id="products">
+      <h2>Our Products</h2>
+      <div class="filters">
+        <label for="categoryFilter">Category:</label>
+        <select id="categoryFilter">
+          <option value="all">All</option>
+          <option value="chocolate">Chocolate</option>
+          <option value="candy">Candy</option>
+          <option value="ladoos">Ladoos</option>
+        </select>
+        <label for="sortBy">Sort by:</label>
+        <select id="sortBy">
+          <option value="price">Price</option>
+          <option value="rating">Rating</option>
+        </select>
+        <button onclick="filterProducts()">Apply</button>
+      </div>
+      <div class="product-grid" id="productGrid">
+        <!-- Products will be added dynamically here -->
+      </div>
+    </section>
+
+    <!-- To-Do List Section -->
+    <section id="to-do">
+      <h2>To-Do List</h2>
+      <input type="text" id="todoInput" placeholder="Add a task...">
+      <button onclick="addTask()">Add Task</button>
+      <ul id="todoList"></ul>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <form id="contactForm">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Your Email" required>
+        <textarea id="message" placeholder="Your Message" rows="4" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+  </main>
+
+  <button class="scroll-top" onclick="scrollToTop()">↑</button>
+
+  <script>
+    // Function to show the appropriate section
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('section');
+      sections.forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(sectionId).classList.add('active');
+    }
+
+    // Function to scroll to top
+    window.onscroll = function() {
+      let scrollButton = document.querySelector('.scroll-top');
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        scrollButton.style.display = "block";
+      } else {
+        scrollButton.style.display = "none";
+      }
+    };
+
+    function scrollToTop() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+
+    // Product data and rendering
+    const products = [
+      { id: 1, name: 'Chocolate Delight', category: 'chocolate', price: 15, rating: 4.5, img:' https://theovenchef.com/wp-content/uploads/2023/08/WhatsApp-Image-2023-11-01-at-5.39.28-PM-1-scaled-e1698841246352.jpeg' },
+
+      { id: 2, name: 'Candy Collection', category: 'candy', price: 10, rating: 4.2, img: 'https://as2.ftcdn.net/v2/jpg/02/42/61/77/1000_F_242617736_9TfuoMtZisC0EdGhrH4PCQt93RgDA8MA.jpg' },
+
+      { id: 3, name:' Malai Puri', category: 'Sweet', price: 12, rating: 4.7, img: 'https://i.ytimg.com/vi/bABPXd4utgA/maxresdefault.jpg'},
+
+	 { id: 4, name: 'Gulab Jamun', category: 'Sweet', price: 10, rating: 4.5, img:'https://i.pinimg.com/736x/43/a0/96/43a096f5d20b0ed78e91eb8f68162379.jpg ' },
+      { id: 5, name: 'Badham Halwa', category: 'Sweet', price: 20, rating: 4.8, img: 'https://southindianfoods.in/gallery/badam-jaggery-halwa-step-by-step-photos/almond-halwa-no-sugar.jpg' },
+
+      { id: 6, name:'Ice Cream', category: 'Candy', price: 10, rating: 4.6, img: 'https://www.keep-calm-and-eat-ice-cream.com/wp-content/uploads/2022/08/Ice-cream-sundae-hero-11.jpg.'},
+
+	 { id: 7, name: 'Bread Halwa', category: 'Sweet', price: 25, rating: 4.7, img:'https://i.ytimg.com/vi/gEXTlvfjKYI/maxresdefault.jpg ' },
+
+      { id: 8, name: 'Rasagulla', category: 'Sweet', price: 15, rating: 4.5, img: 'https://reciperahasya.com/wp-content/uploads/2024/09/Bengali-Sweet-Rasgulla-Recipe-500x500.jpg' },
+
+      { id: 9, name:' Kaju Barfi', category: 'Sweet', price: 12, rating: 4.4, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMWgrwq-LSjm_2fTKTTOhc_sKEBE1KnBRrQg&s'},
+
+	 { id: 10, name: 'Dairy Milk', category: 'chocolate', price: 15, rating: 4.5, img:'https://i0.wp.com/floralxpress.in/wp-content/uploads/2022/08/FXCB013.png?fit=577%2C577&ssl=1 ' },
+
+      { id: 11, name: 'Jilebi', category: 'Sweet', price: 10, rating: 4.2, img: 'https://ministryofcurry.com/wp-content/uploads/2022/03/Jalebi-square-2.jpg' },
+
+      { id: 12, name:'Rasmali', category: 'ladoos', price: 15, rating: 4.7, img: 'https://i.ytimg.com/vi/NVA6tceBry0/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLD-JuHSLNofFMNF_-4zXpb7U_IaIQ'},
+
+    ];
+
+    // Function to render products
+    function renderProducts() {
+      const productGrid = document.getElementById('productGrid');
+      productGrid.innerHTML = '';
+      products.forEach(product => {
+        const productElement = document.createElement('div');
+        productElement.classList.add('product');
+        productElement.innerHTML = `
+          <img src="${product.img}" alt="${product.name}">
+          <h3>${product.name}</h3>
+          <div class="rating">${'★'.repeat(Math.round(product.rating))}</div>
+          <p class="price">$${product.price}</p>
+        `;
+        productGrid.appendChild(productElement);
+      });
+    }
+
+    // Initialize the page
+    window.onload = () => {
+      showSection('home');
+      renderProducts();
+    };
+
+    // To-Do List functionality
+    function addTask() {
+      const todoInput = document.getElementById('todoInput');
+      const todoList = document.getElementById('todoList');
+      const task = todoInput.value.trim();
+      if (task) {
+        const li = document.createElement('li');
+        li.innerHTML = `${task} <button onclick="removeTask(this)">Delete</button>`;
+        todoList.appendChild(li);
+        todoInput.value = '';
+      }
+    }
+
+    function removeTask(button) {
+      button.parentElement.remove();
+    }
+
+    // Contact form submission
+    document.getElementById('contactForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Message Sent! Thank you for contacting us.');
+      document.getElementById('contactForm').reset();
+    });
+  </script>
+</body>
+</html>
+
